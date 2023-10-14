@@ -7,10 +7,229 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="mainContainer">
-        <div></div>
-        <div></div>
-        <div></div>
+    <div id="welcomeDiv">
+        <p id="welcomeMessage">Welcome</p>
+        <p id="welcomeName">Weather App</p>
+        <p id="messageDataProvider">All Data Provided by <span id="dataProviderName">OpenWeather</span></p>
+    </div>
+    <div id="mainDiv">
+        <div id="mainTab">
+            <div id="searchBar">
+                <input id="searchText" type="text" placeholder="Search for cities">
+                <button id="searchBtn" type="submit" >
+                    <img id="searchBtnImg" src="./icons/search-icon.png" alt="Search Icon" />
+                  </button>
+            </div>
+            <div id="mainWeatherInfo">
+                <p id="cityName">New York</p>
+                <img id="mainTempImg" src="./img/ClearNight.png" alt="Sun Icon">
+                <div id="mainInfo">
+                    <div id="currentTempInfo">
+                        <p id="currentTemp">30&deg;C</p>
+                        <p id="feelsLikeTemp"><span id="feelsLikeText">Feels like:</span> <span>30&deg;C</span></p>
+                    </div>
+                </div>
+                <p id="weatherType">Sunny</p>
+                <hr id="mainInfoHr">
+                <div id="footerInfo">
+                    <p id="updateInfo">Updated on: Friday 12:40 21-Jul-2023 </p>
+                    <p id="dataProvider">All Data Provided by <span id="dataProviderName">OpenWeather</span></p>
+                </div>
+            </div>
+        </div>
+        <div id="detailsTab">
+            <div id="infoHour">
+                <p id="todayForecastText">Today's Forecast</p>
+                <div id="weatherForecast">
+                    <div id="infoHourBox">
+                        <p id="infoHourBoxTime">12:00</p>
+                        <img id="infoHourBoxImg" src="./img/Clouds2.png" alt="Hourly Weather Icon">
+                        <p id="infoHourBoxTemp">20&deg;C</p>
+                    </div>
+                    <div id="infoHourBox">
+                        <p id="infoHourBoxTime">12:00</p>
+                        <img id="infoHourBoxImg" src="./img/Clouds1.png" alt="Hourly Weather Icon">
+                        <p id="infoHourBoxTemp">20&deg;C</p>
+                    </div>
+                    <div id="infoHourBox">
+                        <p id="infoHourBoxTime">12:00</p>
+                        <img id="infoHourBoxImg" src="./img/Clouds1.png" alt="Hourly Weather Icon">
+                        <p id="infoHourBoxTemp">20&deg;C</p>
+                    </div>
+                    <div id="infoHourBox">
+                        <p id="infoHourBoxTime">12:00</p>
+                        <img id="infoHourBoxImg" src="./img/Thunderstorm.png" alt="Hourly Weather Icon">
+                        <p id="infoHourBoxTemp">20&deg;C</p>
+                    </div>
+                    <div id="infoHourBox">
+                        <p id="infoHourBoxTime">12:00</p>
+                        <img id="infoHourBoxImg" src="./img/Snow.png" alt="Hourly Weather Icon">
+                        <p id="infoHourBoxTemp">20&deg;C</p>
+                    </div>
+                </div>
+            </div>
+            <div id="infoHighlights">
+                <p id="todayHighlightsText">Today's Highlights</p>
+                
+                <div id="highlightsColumns">
+                    <div id="infoColumn">
+                        <div id="infoWind">
+                            <div id="infoHeader">
+                                <img id="windIcon" src="./icons/wind-icon.png" alt="Wind Icon">
+                                <p>Wind</p>
+                            </div>
+                            <div id="windData">
+                                <div>
+                                    <div id="windInfoContainer">
+                                        <div id="windSpeedNumber">
+                                            2
+                                        </div>
+                                        <div id="windSpeedData">
+                                            <p><span id="windMeasurement">m/s</span></p>
+                                            <p>Speed</p>
+                                        </div>
+                                    </div>
+                                    <div id="windInfoContainer">
+                                        <div id="windGustsNumber">
+                                            2
+                                        </div>
+                                        <div id="windSpeedData">
+                                            <p><span id="gustMeasurement">m/s</span></p>
+                                            <p>Gusts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="windDirection">
+                                    <img id="windDirectionPointer" src="./icons/arrow-icon.png" alt="Arrow icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="infoBox">
+                            <div id="infoHeader">
+                                <img id="uvIcon" src="./icons/uv-icon.png" alt="Drops Icon">
+                                <p>UV Index</p>
+                            </div>
+                            <div id="infoData">
+                                <div id="infoNumber">
+                                    <p><span id="infoUVIndexNumber">32</span></p>
+                                </div>
+                                <div id="infoUVIndexState" class="infoState">
+                                    <p><span>Average</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="infoColumn">
+                        <div id="infoBox">
+                            <div id="infoHeader">
+                                <img id="cloudsIcon" src="./icons/clouds-icon.png" alt="Clouds Icon">
+                                <p>Clouds</p>
+                            </div>
+                            <div id="infoData">
+                                <div id="infoNumber">
+                                    <p><span id="infoCloudsNumber">88</span><span id="measurementSymbol">%</span></p>
+                                </div>
+                                <div id="infoCloudsState" class="infoState">
+                                    <p><span>Normal</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="infoBox">
+                            <div id="infoHeader">
+                                <img id="humidityIcon" src="./icons/humidity-icon.png" alt="Humidity Icon">
+                                <p>Humidity</p>
+                            </div>
+                            <div id="infoData">
+                                <div id="infoNumber">
+                                    <p><span id="infoHumidityNumber">69</span><span id="measurementSymbol">%</span></p>
+                                </div>
+                                <div id="infoHumidityState" class="infoState">
+                                    <p><span>High</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="infoColumn">
+                        <div id="infoBox">
+                            <div id="infoHeader">
+                                <img id="pressureIcon" src="./icons/pressure-icon.png" alt="Pressure Icon">
+                                <p>Pressure</p>
+                            </div>
+                            <div id="infoData">
+                                <div id="infoNumber">
+                                    <p><span id="infoPressureNumber">1018</span><span id="measurementSymbol">hPa</span></p>
+                                </div>
+                                <div id="infoPressureState" class="infoState">
+                                    <p><span>Normal</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="infoBox">
+                            <div id="infoHeader">
+                                <img id="visibilityIcon" src="./icons/visibility-icon.png" alt="Visibility Icon">
+                                <p>Visibility</p>
+                            </div>
+                            <div id="infoData">
+                                <div id="infoNumber">
+                                    <p><span id="infoVisibilityNumber">10</span><span id="measurementSymbol">km</span></p>
+                                </div>
+                                <div id="infoVisibilityState" class="infoState">
+                                    <p><span>Excellent</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id="weekTab">
+            <div id="weekContainer">
+                <p id="fiveDayForecastText">5-Day Forecast</p>
+                <div id="dayForecastContainer">
+                    <div id="dayForecastCard">
+                        <div id="cardDayAndTemp">
+                            <p id="cardDay"><span>Today</span></p>
+                            <p id="cardTemp"><span id="cardLowTemp">26</span>/<span id="cardHighTemp">32</span></p>
+                        </div>
+                        <p>Sunny</p>
+                        <img src="./img/Clear.png" alt="Weather Forecast Icon">
+                    </div>
+                    <div id="dayForecastCard">
+                        <div id="cardDayAndTemp">
+                            <p id="cardDay"><span>Today</span></p>
+                            <p id="cardTemp"><span id="cardLowTemp">26</span>/<span id="cardHighTemp">32</span></p>
+                        </div>
+                        <p>Sunny</p>
+                        <img src="./img/Clear.png" alt="Weather Forecast Icon">
+                    </div>
+                    <div id="dayForecastCard">
+                        <div id="cardDayAndTemp">
+                            <p id="cardDay"><span>Today</span></p>
+                            <p id="cardTemp"><span id="cardLowTemp">26</span>/<span id="cardHighTemp">32</span></p>
+                        </div>
+                        <p>Sunny</p>
+                        <img src="./img/Clear.png" alt="Weather Forecast Icon">
+                    </div>
+                    <div id="dayForecastCard">
+                        <div id="cardDayAndTemp">
+                            <p id="cardDay"><span>Today</span></p>
+                            <p id="cardTemp"><span id="cardLowTemp">26</span>/<span id="cardHighTemp">32</span></p>
+                        </div>
+                        <p>Sunny</p>
+                        <img src="./img/Clear.png" alt="Weather Forecast Icon">
+                    </div>
+                    <div id="dayForecastCard">
+                        <div id="cardDayAndTemp">
+                            <p id="cardDay"><span>Today</span></p>
+                            <p id="cardTemp"><span id="cardLowTemp">26</span>/<span id="cardHighTemp">32</span></p>
+                        </div>
+                        <p>Sunny</p>
+                        <img src="./img/Clear.png" alt="Weather Forecast Icon">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

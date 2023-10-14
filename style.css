@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,12 +12,43 @@ body{
     padding: 0;
 }
 
-#mainContainer{
+#welcomeDiv{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 25dvw;
+    height: 60dvh;
+    border-radius: 30px;
+}
+
+#welcomeDiv #welcomeMessage{
+    font-size: 40px;
+    margin-top: 2dvh;
+    margin-bottom: 2dvh;
+}
+
+#welcomeDiv #welcomeName{
+    color: #F39F5A;
+    margin-top: 2dvh;
+    font-size: 48px;
+    text-align: center;
+}
+
+#welcomeDiv #messageDataProvider{
+    font-size: 16px;
+}
+
+#welcomeDiv #messageDataProvider span{
+    color: #F39F5A;
+}
+
+#mainDiv {
+    display: none;
+    justify-content: flex-start;
     flex-direction: row;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
     width: 95dvw;
     height: 95dvh;
     border-radius: 30px;
@@ -25,3 +56,581 @@ body{
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+#mainDiv::-webkit-scrollbar {
+    display: none;
+}
+
+#mainTab {
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 25dvw;
+    height: 95dvh;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#searchBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 22dvw;
+    height: 6dvh;
+    border-radius: 7px;
+    background-color: #c1c0c2;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#searchBar input {
+    width: 18dvw;
+    height: 5dvh;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background-color: inherit;
+    color: black;
+
+}
+
+#searchBar button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3dvw;
+    height: 5dvh;
+    object-fit: contain;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+}
+
+#searchBar img {
+    width: 18px;
+    height: 18px;
+}
+
+#mainWeatherInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25dvw;
+    height: 80dvh;
+}
+
+#mainWeatherInfo #cityName{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 5dvh;
+    text-transform: capitalize;
+}
+
+#mainWeatherInfo img{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 250px;
+    height: 250px;
+}
+
+#mainWeatherInfo #mainInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 22dvw;
+}
+
+#mainWeatherInfo #mainInfo #currentTempInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 11dvh;
+    width: inherit;
+}
+
+#mainWeatherInfo #mainInfo #currentTempInfo #feelsLikeTemp {
+    margin-top: 7px;
+}
+
+#mainWeatherInfo #mainInfo #currentTempInfo #feelsLikeTemp #feelsLikeText{
+    color: #F39F5A;
+}
+
+#mainWeatherInfo #mainInfo #currentTemp{
+    margin-top: 0;
+    margin-bottom: 0; 
+    font-size: 56px;
+    height: 10dvh;
+}
+
+#mainWeatherInfo p{
+    margin-top: 0;
+    margin-bottom: 0; 
+    font-size: 16px;
+}
+
+#mainWeatherInfo #weatherType{
+    margin-top: 25px;
+    margin-bottom: 25px; 
+    font-size: 40px;
+}
+
+#mainWeatherInfo #mainInfoHr{
+    width: 22dvw;
+}
+
+#footerInfo{
+    height: 14dvh;
+    width: 22dvw;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+#footerInfo p{
+    margin-top: 20px;
+}
+
+#footerInfo p span{
+    color: orange;
+}
+
+
+#detailsTab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 50dvw;
+    height: 95dvh;
+}
+
+#detailsTab #infoHour{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50dvw;
+    height: 35dvh;
+    overflow-y: hidden;
+}
+
+#detailsTab #infoHour > p{
+    color: #F39F5A;
+    font-size: 24px;
+    margin-top: 4dvh;
+    margin-left: 0.7dvw;
+    margin-bottom: 0;
+}
+
+#detailsTab #infoHour #weatherForecast{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    height: 25dvh;
+    width: 50dvw;
+    overflow-y: auto;
+}
+
+#detailsTab #infoHour #infoHourBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(102, 37, 73, 1);
+    width: 9dvw;
+    height: 22dvh;
+    border-radius: 20px;
+}
+
+#detailsTab #infoHour #infoHourBox img{
+    height: 50px;
+    width: 50px;
+}
+
+#detailsTab #infoHour #infoHourBox p{
+    font-size: 18px;
+}
+
+#detailsTab #highlightsColumns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 50dvw;
+    height: 50dvh;
+}
+
+#detailsTab #infoColumn{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 50dvw;
+    height: 47dvh;
+    margin-left: 0.7dvw;
+}
+
+#detailsTab #infoHighlights > p{
+    color: #F39F5A;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0.7dvw;
+}
+
+#detailsTab #infoColumn > div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(102, 37, 73, 1);
+    width: 15.5dvw;
+    height: 22dvh;
+    border-radius: 20px;
+}
+
+#detailsTab #infoColumn div #infoHeader{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    height: 4dvh;
+    width: inherit;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#detailsTab #infoColumn div #infoHeader p{
+    font-size: 22px;
+    margin-left: 7px;
+}
+
+#detailsTab #infoColumn div #infoHeader img{
+    height: 30px;
+    width: 30px;
+    margin-left: 15px;
+}
+
+#detailsTab #infoColumn div #windData {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: inherit;
+    height: 15dvh;
+}
+
+#detailsTab #infoColumn div #windData > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+#detailsTab #infoColumn div #windData #windInfoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 12px;
+    margin-left: 50px;
+}
+
+#detailsTab #infoColumn div #windData #windSpeedNumber {
+    font-size: 40px;
+    margin-right: 5px;
+}
+
+#detailsTab #infoColumn div #windData #windGustsNumber {
+    font-size: 40px;
+    margin-right: 5px;
+}
+
+#detailsTab #infoColumn div #windData p {
+    margin: 0;
+}
+#detailsTab #infoColumn div #windData p span {
+    color: #F39F5A;
+    margin: 0;
+}
+
+#detailsTab #infoColumn div #windData #windDirection {
+    display: flex;
+    width: 110px;
+    height: 110px;
+    margin-bottom: 15px;
+}
+
+#detailsTab #infoColumn div #windData #windDirection img{
+    top: 25px;
+    position: relative;
+    height: 50px;
+    width: 50px;
+	transition: transform 0.6s;
+}
+
+#detailsTab #infoColumn #infoBox{
+    align-items: flex-start;
+}
+
+#detailsTab #infoColumn div #infoData{
+    margin-left: 50px;
+}
+
+#detailsTab #infoColumn div #infoData #measurementSymbol{
+    color: #F39F5A;
+    font-size: 32px;
+}
+
+#detailsTab #infoColumn div #infoData #infoNumber p{
+    font-size: 50px;
+    margin: 0;
+}
+
+#detailsTab #infoColumn div #infoData .infoState p{
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    margin-left: 4px;
+}
+
+#weekTab {
+    width: 25dvw;
+    height: 95dvh;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#weekTab #weekContainer {
+    height: 90dvh;
+    width: 18dvw;
+    border-radius: 20px;
+}
+
+#weekTab #weekContainer #fiveDayForecastText{
+    color: #F39F5A;
+    font-size: 24px;
+    margin-top: 17px;
+    margin-bottom: 15px;
+    margin-left: 0.7dvw;
+}
+
+#weekTab #weekContainer #dayForecastContainer{
+    width: 18dvw;
+    height: 82dvh;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard{
+    background-color: rgba(102, 37, 73, 1);
+    width: 17dvw;
+    height: 14dvh;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #cardDayAndTemp #cardDay{
+    margin-top: 0;
+    margin-bottom: 7px;
+    font-size: 20px;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #cardDayAndTemp #cardTemp{
+    margin-top: 7px;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #cardDayAndTemp #cardTemp #cardLowTemp{
+    margin-top: 7px;
+    margin-bottom: 0;
+    font-size: 20px;
+    color: #F39F5A;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard p{
+    font-size: 24px;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard img{
+    width: 50px;
+    height: 50px;
+}
+
+@keyframes fadeOut {
+    0% { 
+        opacity: 1; 
+    }
+    100% { 
+        opacity: 0; 
+        display: none;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% { 
+        opacity: 0; 
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+
+  .fadeElement{
+    animation: fadeIn 1s forwards;
+  }
+
+
+  @media only screen and (max-width: 1200px) {
+
+    #welcomeDiv {
+        width: 85dvw;
+    }
+
+    #mainDiv {
+        flex-direction: column;
+    }
+
+    #mainTab {  
+        width: 95dvw;
+        min-height: 95dvh;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+    }
+
+    #searchBar {
+        width: 80dvw;
+    }
+
+    #searchBar input {
+        width: 90dvw;
+    
+    }
+    
+    #searchBar button {
+        width: 20dvw;
+    }
+
+    #mainWeatherInfo {
+        justify-content: space-around;
+        width: 90dvw;
+    }
+
+    #mainWeatherInfo img{
+        justify-content: space-around;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        width: 100px;
+        height: 100px;
+    }
+
+    #mainWeatherInfo #mainInfo {
+        width: 90dvw;
+    }
+
+    #mainWeatherInfo hr {
+        width: 75dvw;
+    }
+    
+    #footerInfo{
+        width: 90dvw;
+    }
+
+    #detailsTab {
+        width: 95dvw;
+        min-height: 117dvh;
+    }
+
+    #detailsTab #infoHour{
+        width: 90dvw;
+        min-height: 35dvh;
+    }
+
+    #detailsTab #infoHighlights{
+        width: 90dvw;
+    }
+
+    #detailsTab #infoHour #weatherForecast{
+        width: 130dvw;
+    }
+
+    #detailsTab #infoHour #infoHourBox{
+        width: 24dvw;
+    }
+
+    #detailsTab #infoHighlights{
+        margin-top: 4dvh;
+        width: 90dvw;
+    }
+
+    #detailsTab #infoHighlights p{
+        margin-bottom: 2dvh;
+    }
+
+    #detailsTab #infoHighlights #highlightsColumns{
+        margin-top: 4dvh;
+        width: 90dvw;
+        min-height: 70dvh;
+        flex-direction: column;
+    }
+
+    #detailsTab #infoHighlights #highlightsColumns #infoColumn{
+        flex-direction: row;
+        width: 90dvw;
+    }
+
+    #detailsTab #infoColumn > div {
+        width: 42dvw;
+    }
+
+    #detailsTab #infoColumn div #windData #windInfoContainer{
+        margin-left: 4dvw;
+    }
+
+    #detailsTab #infoColumn #infoBox #infoData {
+        margin-left: 9dvw;
+    }
+
+    #detailsTab #infoColumn #infoBox #infoData #infoNumber p {
+        font-size: 35px;
+    }
+
+    #weekTab {
+        width: 90dvw;
+        min-height: 95dvh;
+        margin-left: 4dvw;
+    }
+
+    #weekTab #weekContainer {
+        width: 90dvw;
+    }
+
+    #weekTab #weekContainer #dayForecastContainer {
+        width: 85dvw;
+    }
+
+    #weekTab #weekContainer #dayForecastContainer #dayForecastCard {
+        margin-left: 3dvw;
+        width: 88dvw;
+    }
+  }
