@@ -506,6 +506,7 @@ body {
     }
 
     #mainDiv {
+        min-width: 95dvw;
         flex-direction: column;
     }
 
