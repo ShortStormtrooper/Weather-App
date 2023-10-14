@@ -39,6 +39,8 @@ let uvIcon = document.getElementById("uvIcon");
 let humidityIcon = document.getElementById("humidityIcon");
 let visibilityIcon = document.getElementById("visibilityIcon");
 
+screen.orientation.lock("portrait");
+
 let APIKey = "bd5e378503939ddaee76f12ad7a97608";
 
 let searchText = document.getElementById("searchText");
@@ -47,7 +49,8 @@ searchText.addEventListener("keypress", (e) => {
         searchCityByName(searchText.value);
     }
 });
-let searchBtn = document.getElementById("searchBtn").addEventListener("click", searchCity);
+
+let searchBtn = document.getElementById("searchBtn").addEventListener("click", function(){searchCityByName(searchText.value) });
 
 let mainDiv = document.getElementById("mainDiv");
 let welcomeDiv = document.getElementById("welcomeDiv");
@@ -925,7 +928,6 @@ async function searchCity(lat, lon) {
     let searchData = await responseCity.json();
     const response = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,alerts&units=metric&appid=" + APIKey);
     let data = await response.json();
-    console.log(data);
     getCurrentWeather(searchData[0].name, data.current);
     getHourlyWeather(data.hourly, data.timezone_offset);
     getDailyWeather(data.daily, data.timezone_offset);
@@ -933,7 +935,6 @@ async function searchCity(lat, lon) {
     searchText.blur();
 }
 async function searchCityByName(searchContext) {
-    console.log("Context:" + searchContext);
     const responseCity = await fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + searchContext + "&limit=5&appid=" + APIKey);
     let searchContextData = await responseCity.json();
     searchCity(searchContextData[0].lat, searchContextData[0].lon);
