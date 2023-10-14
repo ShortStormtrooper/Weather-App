@@ -510,7 +510,7 @@ body {
     }
 
     #mainTab {  
-        width: 95dvw;
+        min-width: 95dvw;
         min-height: 95dvh;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
