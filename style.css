@@ -1,0 +1,27 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./img/WeatherLoadingBackground.jpg");
+    background-size: cover;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#mainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 95vw;
+    height: 95vh;
+    border-radius: 30px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
