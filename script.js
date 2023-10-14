@@ -39,8 +39,6 @@ let uvIcon = document.getElementById("uvIcon");
 let humidityIcon = document.getElementById("humidityIcon");
 let visibilityIcon = document.getElementById("visibilityIcon");
 
-screen.orientation.lock("portrait");
-
 let APIKey = "bd5e378503939ddaee76f12ad7a97608";
 
 let searchText = document.getElementById("searchText");
