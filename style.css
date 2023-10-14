@@ -55,6 +55,7 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    position: static;
 }
 
 #mainDiv::-webkit-scrollbar {
