@@ -496,7 +496,7 @@ body {
   }
 
   .fadeElement{
-    animation: fadeIn 1s forwards;
+    animation: fadeIn 1500ms forwards;
   }
 
 

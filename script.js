@@ -58,7 +58,7 @@ window.onload = function() {
           const latitude = Math.round((position.coords.latitude + Number.EPSILON) * 100) / 100;
           const longitude = Math.round((position.coords.longitude + Number.EPSILON) * 100) / 100;
           searchCity(latitude, longitude);
-          welcomeDiv.style.animation = "fadeOut 500ms forwards";
+          welcomeDiv.style.animation = "fadeOut 800ms forwards";
           setTimeout(() => mainDiv.style.display = "flex", 1000);
           mainDiv.classList.add("fadeElement");
           setTimeout(() => mainDiv.classList.remove("fadeElement"), 1500);
