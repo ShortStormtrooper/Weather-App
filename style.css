@@ -55,7 +55,7 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    position: static;
+    position: absolute;
 }
 
 #mainDiv::-webkit-scrollbar {
@@ -509,6 +509,7 @@ body {
     #mainDiv {
         min-width: 95dvw;
         flex-direction: column;
+
     }
 
     #mainTab {  
