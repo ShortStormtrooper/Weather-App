@@ -677,6 +677,85 @@ function getColorTheme(dayNight, weatherID){
         }
         
     }
+    else if(weatherID > 700 && weatherID < 800){
+        document.body.style.background = "linear-gradient(145deg, rgba(51,76,81,1) 0%, rgba(122,156,186,1) 100%)";
+        document.body.style.color = "black";
+        mainInfoHr.style.border = "1px solid black";
+        feelsLikeText.style.color = "rgba(179, 218, 254,1)";
+        todayForecastText.style.color = "rgba(179, 218, 254,1)";
+        todayHighlightsText.style.color = "rgba(179, 218, 254,1)";
+        windMeasurement.style.color = "rgba(179, 218, 254,1)";
+        gustMeasurement.style.color = "rgba(179, 218, 254,1)";
+        fiveDayForecastText.style.color = "rgba(179, 218, 254,1)";
+
+        windIcon.src = "./icons/wind-icon-blue.png";
+        cloudsIcon.src = "./icons/clouds-icon-blue.png";
+        pressureIcon.src = "./icons/pressure-icon-blue.png";
+        uvIcon.src = "./icons/uv-icon-blue.png";
+        humidityIcon.src = "./icons/humidity-icon-blue.png";
+        visibilityIcon.src = "./icons/visibility-icon-blue.png";
+        windDirectionPointer.src = "./icons/arrow-icon-blue.png";
+
+        let i = 0;
+
+        while(i < additionalMeasurementSymbol.length){
+            additionalMeasurementSymbol[i].style.color = "rgba(179, 218, 254,1)";
+            i++;
+        }
+    
+        i = 0;
+            
+        while(i < additionalInfoImg.length){
+            additionalInfoImg[i].src = "./icons/wind-icon-blue.png";
+            additionalInfoImg[i+1].src = "./icons/uv-icon-blue.png";
+            additionalInfoImg[i+2].src = "./icons/humidity-icon-blue.png";
+            additionalInfoImg[i+3].src = "./icons/clouds-icon-blue.png";
+            i+=4;
+        }
+
+        i=0;
+
+        while(i < highlightsColumns.children.length){
+                
+            while(j < highlightsColumns.children[i].children.length){
+                highlightsColumns.children[i].children[j].style.backgroundColor = "rgba(84,115,126,1)";
+                j++;
+            }
+                
+            j = 0;
+
+            if(i == 0){
+
+            }
+            else{
+                while(j < highlightsColumns.children[i].children.length){
+                    highlightsColumns.children[i].children[j].children[1].children[0].children[0].children[1].style.color = "rgba(179, 218, 254,1)";
+                    j++;
+                }
+            }
+
+            j = 0;
+
+            i++;
+
+        }
+
+        i = 0;
+        j = 0;
+
+        while(i < weatherForecast.children.length){
+            weatherForecast.children[i].style.backgroundColor = "rgba(84,115,126,1)";
+            dayForecastContainer.children[i].style.backgroundColor = "rgba(84,115,126,1)";
+            i++;
+        }
+
+        i = 0;
+
+        while(i < weatherForecast.children.length){
+            dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
+            i++;
+        }
+    }
     else if(weatherID == 800){
         if(dayNight== "d"){
             document.body.style.background = "linear-gradient(145deg, rgba(4, 99, 202,1) 0%, rgba(155,232,255,1) 100%)";
