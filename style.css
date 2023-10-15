@@ -431,21 +431,70 @@ body {
     width: 18dvw;
     height: 82dvh;
     border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+    display: grid;
+    grid-gap: 2dvh;
     align-items: center;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#dayForecastContainer::-webkit-scrollbar {
+    display: none;
 }
 
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard{
     background-color: rgba(102, 37, 73, 1);
-    width: 17dvw;
+    width: 18dvw;
     height: 14dvh;
     border-radius: 20px;
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastMainInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: inherit;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastAdditionalInfo{
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: inherit;
+    height: 40dvh;
+    border-radius: 20px;
+}
+
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastAdditionalInfo #additionalInfoBox{
+    height: 8dvh;
+    width: 15dvw;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-inline: 10px;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastAdditionalInfo #additionalInfoBox .additionalInfoBoxImg{
+    height: 40px;
+    width: 40px;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastAdditionalInfo #additionalInfoBox #additionalInfoBoxNumber{
+    font-size: 30px;
+}
+
+#weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastAdditionalInfo #additionalInfoBox #additionalInfoBoxState{
+    font-size: 20px;
 }
 
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard #cardDayAndTemp #cardDay{
@@ -621,7 +670,7 @@ body {
     #weekTab {
         width: 90dvw;
         min-height: 95dvh;
-        margin-left: 4dvw;
+        margin-left: 2.5dvw;
     }
 
     #weekTab #weekContainer {
@@ -629,11 +678,14 @@ body {
     }
 
     #weekTab #weekContainer #dayForecastContainer {
-        width: 85dvw;
+        width: inherit;
     }
 
     #weekTab #weekContainer #dayForecastContainer #dayForecastCard {
-        margin-left: 3dvw;
-        width: 88dvw;
+        width: 90dvw;
+    }
+
+    #weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastAdditionalInfo #additionalInfoBox{
+        width: 80dvw;
     }
   }

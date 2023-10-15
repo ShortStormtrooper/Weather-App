@@ -38,6 +38,8 @@ let pressureIcon = document.getElementById("pressureIcon");
 let uvIcon = document.getElementById("uvIcon");
 let humidityIcon = document.getElementById("humidityIcon");
 let visibilityIcon = document.getElementById("visibilityIcon");
+let additionalInfoImg = document.getElementsByClassName("additionalInfoBoxImg");
+let additionalMeasurementSymbol = document.getElementsByClassName("additionalMeasurementSymbol");
 
 let APIKey = "bd5e378503939ddaee76f12ad7a97608";
 
@@ -217,11 +219,46 @@ function getDailyWeather(dailyData, timezoneOffset){
     let i = 0;
 
     while(i < 5){
-        childList[i].children[0].children[0].innerHTML = getDailyTime(dailyData[i+1].dt, timezoneOffset);
-        childList[i].children[0].children[1].children[0].innerHTML = Math.round(dailyData[i+1].temp.min);
-        childList[i].children[0].children[1].children[1].innerHTML = Math.round(dailyData[i+1].temp.max);
-        childList[i].children[1].innerHTML = dailyData[i+1].weather[0].main;
-        childList[i].children[2].src = getWeatherType((dailyData[i+1].weather[0].icon)[2], dailyData[i+1].weather[0].id);
+        childList[i].addEventListener("click", function(){
+            
+            var content = this.children[1];
+            if (content.style.display == "none" || content.style.display == "") {
+                this.style.height = "50dvh";
+                content.style.display = "flex";
+            } else {
+                this.style.height = "14dvh";
+                content.style.display = "none";
+            }
+        });
+        childList[i].children[0].children[0].children[0].children[0].innerHTML = getDailyTime(dailyData[i].dt, timezoneOffset);
+        childList[i].children[0].children[0].children[1].children[0].innerHTML = Math.round(dailyData[i].temp.min);
+        childList[i].children[0].children[0].children[1].children[1].innerHTML = Math.round(dailyData[i].temp.max);
+        childList[i].children[0].children[1].innerHTML = dailyData[i].weather[0].main;
+        childList[i].children[0].children[2].src = getWeatherType((dailyData[i].weather[0].icon)[2], dailyData[i].weather[0].id);
+
+        childList[i].children[1].children[0].children[1].innerHTML = Math.round(dailyData[i].wind_speed);
+
+        childList[i].children[1].children[1].children[1].innerHTML = Math.round(dailyData[i].uvi);
+
+        if(dailyData[i].uvi >= 0 && dailyData[i].uvi < 3){
+            childList[i].children[1].children[1].children[2].innerHTML = "Low";
+        }
+        else if(dailyData[i].uvi >= 3 && dailyData[i].uvi < 6){
+            childList[i].children[1].children[1].children[2].innerHTML = "Moderate";
+        }
+        else if(dailyData[i].uvi >= 6 && dailyData[i].uvi < 8){
+            childList[i].children[1].children[1].children[2].innerHTML = "High";
+        }
+        else if(dailyData[i].uvi >= 8 && dailyData[i].uvi < 11){
+            childList[i].children[1].children[1].children[2].innerHTML = "Very High";
+        }
+        else {
+            childList[i].children[1].children[1].children[2].innerHTML = "Extreme";
+        }
+
+        childList[i].children[1].children[2].children[1].innerHTML = Math.round(dailyData[i].humidity);
+        
+        childList[i].children[1].children[3].children[1].innerHTML = Math.round(dailyData[i].clouds);
         i++
     }
 }
@@ -252,6 +289,25 @@ function getColorTheme(dayNight, weatherID){
         humidityIcon.src = "./icons/humidity-icon-yellow.png";
         visibilityIcon.src = "./icons/visibility-icon-yellow.png";
         windDirectionPointer.src = "./icons/arrow-icon-yellow.png";
+
+        let i = 0;
+
+        while(i < additionalMeasurementSymbol.length){
+            additionalMeasurementSymbol[i].style.color = "rgba(250, 198, 0,1)";
+            i++;
+        }
+
+        i = 0;
+
+        while(i < additionalInfoImg.length){
+            additionalInfoImg[i].src = "./icons/wind-icon-yellow.png";
+            additionalInfoImg[i+1].src = "./icons/uv-icon-yellow.png";
+            additionalInfoImg[i+2].src = "./icons/humidity-icon-yellow.png";
+            additionalInfoImg[i+3].src = "./icons/clouds-icon-yellow.png";
+            i+=4;
+        }
+
+        i=0;
 
         while(i < highlightsColumns.children.length){
             
@@ -289,7 +345,7 @@ function getColorTheme(dayNight, weatherID){
         i = 0;
 
         while(i < weatherForecast.children.length){
-            dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
+            dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
             i++;
         }
 
@@ -313,6 +369,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-blue.png";
             visibilityIcon.src = "./icons/visibility-icon-blue.png";
             windDirectionPointer.src = "./icons/arrow-icon-blue.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(179, 218, 254,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-blue.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-blue.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-blue.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-blue.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                 
@@ -350,7 +425,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
         }
@@ -372,6 +447,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-blue.png";
             visibilityIcon.src = "./icons/visibility-icon-blue.png";
             windDirectionPointer.src = "./icons/arrow-icon-blue.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(179, 218, 254,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-blue.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-blue.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-blue.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-blue.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                 
@@ -409,7 +503,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
         }
@@ -434,6 +528,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-blue.png";
             visibilityIcon.src = "./icons/visibility-icon-blue.png";
             windDirectionPointer.src = "./icons/arrow-icon-blue.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(179, 218, 254,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-blue.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-blue.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-blue.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-blue.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                 
@@ -471,7 +584,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
         }
@@ -493,6 +606,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-blue.png";
             visibilityIcon.src = "./icons/visibility-icon-blue.png";
             windDirectionPointer.src = "./icons/arrow-icon-blue.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(179, 218, 254,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-blue.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-blue.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-blue.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-blue.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                 
@@ -530,7 +662,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
         }
@@ -555,6 +687,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-yellow.png";
             visibilityIcon.src = "./icons/visibility-icon-yellow.png";
             windDirectionPointer.src = "./icons/arrow-icon-yellow.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(250, 198, 0,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-yellow.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-yellow.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-yellow.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-yellow.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                 
@@ -593,7 +744,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
                 i++;
             }
         }
@@ -615,6 +766,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-yellow.png";
             visibilityIcon.src = "./icons/visibility-icon-yellow.png";
             windDirectionPointer.src = "./icons/arrow-icon-yellow.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(250, 198, 0,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-yellow.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-yellow.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-yellow.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-yellow.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                 
@@ -652,7 +822,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
                 i++;
             }
         }
@@ -676,6 +846,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-yellow.png";
             visibilityIcon.src = "./icons/visibility-icon-yellow.png";
             windDirectionPointer.src = "./icons/arrow-icon-yellow.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(250, 198, 0,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-yellow.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-yellow.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-yellow.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-yellow.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                     
@@ -713,7 +902,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(250, 198, 0, 1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0, 1)";
                 i++;
             }
         }
@@ -735,6 +924,25 @@ function getColorTheme(dayNight, weatherID){
             humidityIcon.src = "./icons/humidity-icon-yellow.png";
             visibilityIcon.src = "./icons/visibility-icon-yellow.png";
             windDirectionPointer.src = "./icons/arrow-icon-yellow.png";
+
+            let i = 0;
+
+            while(i < additionalMeasurementSymbol.length){
+                additionalMeasurementSymbol[i].style.color = "rgba(250, 198, 0,1)";
+                i++;
+            }
+    
+            i = 0;
+            
+            while(i < additionalInfoImg.length){
+                additionalInfoImg[i].src = "./icons/wind-icon-yellow.png";
+                additionalInfoImg[i+1].src = "./icons/uv-icon-yellow.png";
+                additionalInfoImg[i+2].src = "./icons/humidity-icon-yellow.png";
+                additionalInfoImg[i+3].src = "./icons/clouds-icon-yellow.png";
+                i+=4;
+            }
+
+            i=0;
 
             while(i < highlightsColumns.children.length){
                     
@@ -772,7 +980,7 @@ function getColorTheme(dayNight, weatherID){
             i = 0;
 
             while(i < weatherForecast.children.length){
-                dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(250, 198, 0, 1)";
+                dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0, 1)";
                 i++;
             }
         }
@@ -796,6 +1004,25 @@ function getColorTheme(dayNight, weatherID){
         humidityIcon.src = "./icons/humidity-icon-blue.png";
         visibilityIcon.src = "./icons/visibility-icon-blue.png";
         windDirectionPointer.src = "./icons/arrow-icon-blue.png";
+
+        let i = 0;
+
+        while(i < additionalMeasurementSymbol.length){
+            additionalMeasurementSymbol[i].style.color = "rgba(179, 218, 254,1)";
+            i++;
+        }
+
+        i = 0;
+        
+        while(i < additionalInfoImg.length){
+            additionalInfoImg[i].src = "./icons/wind-icon-blue.png";
+            additionalInfoImg[i+1].src = "./icons/uv-icon-blue.png";
+            additionalInfoImg[i+2].src = "./icons/humidity-icon-blue.png";
+            additionalInfoImg[i+3].src = "./icons/clouds-icon-blue.png";
+            i+=4;
+        }
+
+        i=0;
 
         while(i < highlightsColumns.children.length){
                     
@@ -833,7 +1060,7 @@ function getColorTheme(dayNight, weatherID){
         i = 0;
 
         while(i < weatherForecast.children.length){
-            dayForecastContainer.children[i].children[0].children[1].children[0].style.color = "rgba(179, 218, 254, 1)";
+            dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254, 1)";
             i++;
         }
     }
