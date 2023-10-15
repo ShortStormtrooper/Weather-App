@@ -69,6 +69,24 @@ window.onload = function() {
     }
 };
 
+let i = 0;
+const childList = document.getElementById("dayForecastContainer").children;
+
+while(i < 5){
+    childList[i].addEventListener("click", function(){
+        
+        var content = this.children[1];
+        if (content.style.display == "none" || content.style.display == "") {
+            this.style.height = "50dvh";
+            content.style.display = "flex";
+        } else {
+            this.style.height = "14dvh";
+            content.style.display = "none";
+        }
+    });
+    i++;
+}
+
 function getCurrentWeather(name, currentData){
     
     cityName.innerHTML = name;
@@ -80,6 +98,8 @@ function getCurrentWeather(name, currentData){
     let j = 0;
 
     getColorTheme((currentData.weather[0].icon)[2], currentData.weather[0].id);
+
+    console.log(currentData);
 
     mainTempImg.src = getWeatherType((currentData.weather[0].icon)[2], currentData.weather[0].id);
 
@@ -219,17 +239,6 @@ function getDailyWeather(dailyData, timezoneOffset){
     let i = 0;
 
     while(i < 5){
-        childList[i].addEventListener("click", function(){
-            
-            var content = this.children[1];
-            if (content.style.display == "none" || content.style.display == "") {
-                this.style.height = "50dvh";
-                content.style.display = "flex";
-            } else {
-                this.style.height = "14dvh";
-                content.style.display = "none";
-            }
-        });
         childList[i].children[0].children[0].children[0].children[0].innerHTML = getDailyTime(dailyData[i].dt, timezoneOffset);
         childList[i].children[0].children[0].children[1].children[0].innerHTML = Math.round(dailyData[i].temp.min);
         childList[i].children[0].children[0].children[1].children[1].innerHTML = Math.round(dailyData[i].temp.max);
@@ -1076,6 +1085,9 @@ function getWeatherType(dayNight, weatherID){
     }
     else if(weatherID > 599 && weatherID < 700){
         return "./img/Snow.png";
+    }
+    else if(weatherID > 700 && weatherID < 800){
+        return "./img/Fog.png";
     }
     else if(weatherID == 800){
         if(dayNight== "d"){
