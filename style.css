@@ -458,7 +458,7 @@ body {
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard{
     background-color: rgba(102, 37, 73, 1);
     width: 18dvw;
-    height: 12dvh;
+    min-height: 12dvh;
     border-radius: 20px;
     display: flex;
     justify-content: flex-start;

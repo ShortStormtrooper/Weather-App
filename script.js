@@ -77,10 +77,10 @@ while(i < 7){
         
         var content = this.children[1];
         if (content.style.display == "flex") {
-            this.style.height = "12dvh";
+            this.style.minHeight = "12dvh";
             content.style.display = "none";
         } else {
-            this.style.height = "52dvh";
+            this.style.minHeight = "52dvh";
             content.style.display = "flex";
         }
     });
