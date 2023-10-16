@@ -77,10 +77,10 @@ while(i < 7){
         
         var content = this.children[1];
         if (content.style.display == "none" || content.style.display == "") {
-            this.style.height = "52dvh";
+            this.style.height = "48dvh";
             content.style.display = "flex";
         } else {
-            this.style.height = "11dvh";
+            this.style.height = "12dvh";
             content.style.display = "none";
         }
     });

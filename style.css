@@ -458,13 +458,14 @@ body {
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard{
     background-color: rgba(102, 37, 73, 1);
     width: 18dvw;
-    height: 11dvh;
+    height: 12dvh;
     border-radius: 20px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     transition: all 150ms linear;
     overflow: hidden;
+    padding-top: 1dvh;
 }
 
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastMainInfo{
@@ -480,7 +481,7 @@ body {
     justify-content: space-around;
     flex-direction: column;
     width: inherit;
-    min-height: 41dvh;
+    height: 41dvh;
     border-radius: 20px;
 }
 
