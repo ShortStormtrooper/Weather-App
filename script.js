@@ -76,12 +76,12 @@ while(i < 7){
     childList[i].addEventListener("click", function(){
         
         var content = this.children[1];
-        if (content.style.display == "none" || content.style.display == "") {
-            this.style.height = "48dvh";
-            content.style.display = "flex";
-        } else {
+        if (content.style.display == "flex") {
             this.style.height = "12dvh";
             content.style.display = "none";
+        } else {
+            this.style.height = "52dvh";
+            content.style.display = "flex";
         }
     });
     i++;
