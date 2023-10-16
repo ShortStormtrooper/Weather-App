@@ -465,7 +465,6 @@ body {
     flex-direction: column;
     transition: all 150ms linear;
     overflow: hidden;
-    padding-top: 1dvh;
 }
 
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastMainInfo{
