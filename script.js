@@ -72,7 +72,7 @@ window.onload = function() {
 let i = 0;
 const childList = document.getElementById("dayForecastContainer").children;
 
-while(i < 5){
+while(i < 7){
     childList[i].addEventListener("click", function(){
         
         var content = this.children[1];
@@ -80,7 +80,7 @@ while(i < 5){
             this.style.height = "50dvh";
             content.style.display = "flex";
         } else {
-            this.style.height = "14dvh";
+            this.style.height = "12dvh";
             content.style.display = "none";
         }
     });
@@ -98,8 +98,6 @@ function getCurrentWeather(name, currentData){
     let j = 0;
 
     getColorTheme((currentData.weather[0].icon)[2], currentData.weather[0].id);
-
-    console.log(currentData);
 
     mainTempImg.src = getWeatherType((currentData.weather[0].icon)[2], currentData.weather[0].id);
 
@@ -225,6 +223,8 @@ function getHourlyWeather(hourlyData, timezoneOffset){
     const childList = document.getElementById("weatherForecast").children;
     let i = 0;
 
+    console.log(hourlyData);
+
     while(i < childList.length){
         childList[i].children[0].innerHTML = getChildTime(hourlyData[i+1].dt, timezoneOffset);
         childList[i].children[1].src = getWeatherType((hourlyData[i+1].weather[0].icon)[2], hourlyData[i+1].weather[0].id);
@@ -238,36 +238,36 @@ function getDailyWeather(dailyData, timezoneOffset){
     const childList = document.getElementById("dayForecastContainer").children;
     let i = 0;
 
-    while(i < 5){
-        childList[i].children[0].children[0].children[0].children[0].innerHTML = getDailyTime(dailyData[i].dt, timezoneOffset);
-        childList[i].children[0].children[0].children[1].children[0].innerHTML = Math.round(dailyData[i].temp.min);
-        childList[i].children[0].children[0].children[1].children[1].innerHTML = Math.round(dailyData[i].temp.max);
-        childList[i].children[0].children[1].innerHTML = dailyData[i].weather[0].main;
-        childList[i].children[0].children[2].src = getWeatherType((dailyData[i].weather[0].icon)[2], dailyData[i].weather[0].id);
+    while(i < 7){
+        childList[i].children[0].children[0].children[0].children[0].innerHTML = getDailyTime(dailyData[i+1].dt, timezoneOffset);
+        childList[i].children[0].children[0].children[1].children[0].innerHTML = Math.round(dailyData[i+1].temp.min);
+        childList[i].children[0].children[0].children[1].children[1].innerHTML = Math.round(dailyData[i+1].temp.max);
+        childList[i].children[0].children[1].innerHTML = dailyData[i+1].weather[0].main;
+        childList[i].children[0].children[2].src = getWeatherType((dailyData[i+1].weather[0].icon)[2], dailyData[i+1].weather[0].id);
 
-        childList[i].children[1].children[0].children[1].innerHTML = Math.round(dailyData[i].wind_speed);
+        childList[i].children[1].children[0].children[1].innerHTML = Math.round(dailyData[i+1].wind_speed);
 
-        childList[i].children[1].children[1].children[1].innerHTML = Math.round(dailyData[i].uvi);
+        childList[i].children[1].children[1].children[1].innerHTML = Math.round(dailyData[i+1].uvi);
 
-        if(dailyData[i].uvi >= 0 && dailyData[i].uvi < 3){
+        if(dailyData[i+1].uvi >= 0 && dailyData[i+1].uvi < 3){
             childList[i].children[1].children[1].children[2].innerHTML = "Low";
         }
-        else if(dailyData[i].uvi >= 3 && dailyData[i].uvi < 6){
+        else if(dailyData[i+1].uvi >= 3 && dailyData[i+1].uvi < 6){
             childList[i].children[1].children[1].children[2].innerHTML = "Moderate";
         }
-        else if(dailyData[i].uvi >= 6 && dailyData[i].uvi < 8){
+        else if(dailyData[i+1].uvi >= 6 && dailyData[i+1].uvi < 8){
             childList[i].children[1].children[1].children[2].innerHTML = "High";
         }
-        else if(dailyData[i].uvi >= 8 && dailyData[i].uvi < 11){
+        else if(dailyData[i+1].uvi >= 8 && dailyData[i+1].uvi < 11){
             childList[i].children[1].children[1].children[2].innerHTML = "Very High";
         }
         else {
             childList[i].children[1].children[1].children[2].innerHTML = "Extreme";
         }
 
-        childList[i].children[1].children[2].children[1].innerHTML = Math.round(dailyData[i].humidity);
+        childList[i].children[1].children[2].children[1].innerHTML = Math.round(dailyData[i+1].humidity);
         
-        childList[i].children[1].children[3].children[1].innerHTML = Math.round(dailyData[i].clouds);
+        childList[i].children[1].children[3].children[1].innerHTML = Math.round(dailyData[i+1].clouds);
         i++
     }
 }
@@ -347,13 +347,19 @@ function getColorTheme(dayNight, weatherID){
 
         while(i < weatherForecast.children.length){
             weatherForecast.children[i].style.backgroundColor = "rgba(1,23,82,1)";
+            i++;
+        }
+
+        i = 0;
+
+        while(i < dayForecastContainer.children.length){
             dayForecastContainer.children[i].style.backgroundColor = "rgba(1,23,82,1)";
             i++;
         }
 
         i = 0;
 
-        while(i < weatherForecast.children.length){
+        while(i < dayForecastContainer.children.length){
             dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
             i++;
         }
@@ -427,13 +433,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(108,128,148,1)";
+                i++;
+            }
+    
+            i = 0;
+    
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(108,128,148,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
@@ -505,13 +517,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(58, 64, 69,1)";
+                i++;
+            }
+    
+            i = 0;
+    
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(58, 64, 69,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
@@ -586,13 +604,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(129,165,186,1)";
+                i++;
+            }
+    
+            i = 0;
+    
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(129,165,186,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
@@ -664,13 +688,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(22, 57, 71,1)";
+                i++;
+            }
+    
+            i = 0;
+    
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(22, 57, 71,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
                 i++;
             }
@@ -745,13 +775,19 @@ function getColorTheme(dayNight, weatherID){
 
         while(i < weatherForecast.children.length){
             weatherForecast.children[i].style.backgroundColor = "rgba(84,115,126,1)";
+            i++;
+        }
+
+        i = 0;
+
+        while(i < dayForecastContainer.children.length){
             dayForecastContainer.children[i].style.backgroundColor = "rgba(84,115,126,1)";
             i++;
         }
 
         i = 0;
 
-        while(i < weatherForecast.children.length){
+        while(i < dayForecastContainer.children.length){
             dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254,1)";
             i++;
         }
@@ -825,13 +861,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(0,184,255,1)";
+                i++;
+            }
+
+            i = 0;
+
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(0,184,255,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
                 i++;
             }
@@ -903,13 +945,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(72,52,117,1)";
+                i++;
+            }
+
+            i = 0;
+
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(72,52,117,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0,1)";
                 i++;
             }
@@ -983,13 +1031,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(102,142,171,1)";
+                i++;
+            }
+
+            i = 0;
+
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(102,142,171,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0, 1)";
                 i++;
             }
@@ -1061,13 +1115,19 @@ function getColorTheme(dayNight, weatherID){
 
             while(i < weatherForecast.children.length){
                 weatherForecast.children[i].style.backgroundColor = "rgba(32, 70, 92,1)";
+                i++;
+            }
+    
+            i = 0;
+    
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].style.backgroundColor = "rgba(32, 70, 92,1)";
                 i++;
             }
 
             i = 0;
 
-            while(i < weatherForecast.children.length){
+            while(i < dayForecastContainer.children.length){
                 dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(250, 198, 0, 1)";
                 i++;
             }
@@ -1141,13 +1201,19 @@ function getColorTheme(dayNight, weatherID){
 
         while(i < weatherForecast.children.length){
             weatherForecast.children[i].style.backgroundColor = "rgba(57, 78, 94,1)";
+            i++;
+        }
+
+        i = 0;
+
+        while(i < dayForecastContainer.children.length){
             dayForecastContainer.children[i].style.backgroundColor = "rgba(57, 78, 94,1)";
             i++;
         }
 
         i = 0;
 
-        while(i < weatherForecast.children.length){
+        while(i < dayForecastContainer.children.length){
             dayForecastContainer.children[i].children[0].children[0].children[1].children[0].style.color = "rgba(179, 218, 254, 1)";
             i++;
         }

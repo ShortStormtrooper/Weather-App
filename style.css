@@ -221,28 +221,40 @@ body {
     flex-direction: column;
     width: 50dvw;
     height: 35dvh;
-    overflow-y: hidden;
+    margin-left: 1.5dvw;
 }
+
+#infoHour #overflowDiv{
+    display: grid;
+    width: 49dvw;
+    overflow-y: hidden;
+} 
 
 #detailsTab #infoHour > p{
     color: #F39F5A;
     font-size: 24px;
     margin-top: 4dvh;
-    margin-left: 0.7dvw;
     margin-bottom: 0;
 }
 
-#detailsTab #infoHour #weatherForecast{
-    display: flex;
-    justify-content: space-around;
+#detailsTab #infoHour #overflowDiv #weatherForecast{
+    display: grid;
     align-items: center;
     flex-direction: row;
     height: 25dvh;
-    width: 50dvw;
+    width: inherit;
     overflow-y: auto;
+    grid-auto-flow: column;
+    grid-gap: 1dvw;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-#detailsTab #infoHour #infoHourBox{
+#weatherForecast::-webkit-scrollbar {
+    display: none;
+}
+
+#detailsTab #infoHour #overflowDiv #infoHourBox{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,12 +265,12 @@ body {
     border-radius: 20px;
 }
 
-#detailsTab #infoHour #infoHourBox img{
+#detailsTab #infoHour #overflowDiv #infoHourBox img{
     height: 50px;
     width: 50px;
 }
 
-#detailsTab #infoHour #infoHourBox p{
+#detailsTab #infoHour #overflowDiv #infoHourBox p{
     font-size: 18px;
 }
 
@@ -446,12 +458,14 @@ body {
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard{
     background-color: rgba(102, 37, 73, 1);
     width: 18dvw;
-    height: 14dvh;
+    height: 12dvh;
     border-radius: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    transition: all 150ms linear;
+    overflow: hidden;
+    padding-top: 1dvh;
 }
 
 #weekTab #weekContainer #dayForecastContainer #dayForecastCard #dayForecastMainInfo{
@@ -467,7 +481,7 @@ body {
     justify-content: space-around;
     flex-direction: column;
     width: inherit;
-    height: 40dvh;
+    height: 41dvh;
     border-radius: 20px;
 }
 
@@ -626,9 +640,13 @@ body {
         width: 130dvw;
     }
 
-    #detailsTab #infoHour #infoHourBox{
-        width: 24dvw;
+    #detailsTab #infoHour #overflowDiv #weatherForecast #infoHourBox{
+        width: 25dvw;
     }
+
+    #infoHour #overflowDiv{
+        width: 88dvw;
+    } 
 
     #detailsTab #infoHighlights{
         margin-top: 4dvh;
